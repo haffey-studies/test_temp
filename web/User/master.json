@@ -7,7 +7,130 @@
     "authenticated": false,
     "current_manager": "",
     "experiment": "",
-    "experiments": {},
+    "experiments": {
+      "beepbop": {
+        "all_procs": {
+          "procedure_1.csv": [
+            [
+              "item",
+              "trial type",
+              "max time",
+              "text",
+              "Shuffle 1",
+              null
+            ],
+            [
+              "2",
+              "instruct",
+              "user",
+              "This is the start of a new experiment.",
+              "off",
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ]
+          ]
+        },
+        "cond_array": [
+          [
+            "name",
+            "notes",
+            "stimuli",
+            "procedure",
+            "fullscreen",
+            "welcome",
+            "participant_id",
+            "end_message",
+            "start_message",
+            "buffer",
+            "scripts",
+            null
+          ],
+          [
+            "condition_1",
+            "You can put more detailed notes in this field",
+            "stimuli_1.csv",
+            "procedure_1.csv",
+            "off",
+            "",
+            "on",
+            "",
+            "",
+            "5",
+            "",
+            null
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        ],
+        "all_stims": {
+          "stimuli_1.csv": [
+            [
+              "cue",
+              "answer",
+              null
+            ],
+            [
+              "A",
+              "Apple",
+              null
+            ],
+            [
+              "B",
+              "Banana",
+              null
+            ],
+            [
+              null,
+              null,
+              null
+            ]
+          ]
+        },
+        "public_key": "MKgLku3ydfXIvNy5TcnZnW8zSB4d+yZ2J/3r7k6JdwE=",
+        "parsed_procs": {
+          "procedure_1.csv": [
+            {
+              "item": "2",
+              "trial type": "instruct",
+              "max time": "user",
+              "text": "This is the start of a new experiment.",
+              "": "",
+              "shuffle 1": "off"
+            }
+          ]
+        },
+        "surveys": {},
+        "trialtypes": {
+          "instruct": ""
+        },
+        "procs_csv": {
+          "procedure_1.csv": "item,trial type,max time,text,Shuffle 1,\r\n2,instruct,user,This is the start of a new experiment.,off,\r\n,,,,,"
+        },
+        "stims_csv": {
+          "stimuli_1.csv": "cue,answer,\r\nA,Apple,\r\nB,Banana,\r\n,,"
+        },
+        "conditions_csv": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,off,,on,,,5,,\r\n,,,,,,,,,,,"
+      }
+    },
     "incomp_process": false,
     "pipe_position": 0,
     "pipe_direction": "",
@@ -39,11 +162,33 @@
     "trialtype": "",
     "filetype": "",
     "version": 0,
-    "user_trialtypes": {}
+    "user_trialtypes": {},
+    "graphic": {
+      "trialtype": "",
+      "trialtypes": {},
+      "hovered_element": "",
+      "relevant_styles": [
+        "background-color",
+        "border-color",
+        "border-radius",
+        "border-style",
+        "border-width",
+        "color",
+        "font-size",
+        "height",
+        "left",
+        "top",
+        "width",
+        "z-index"
+      ]
+    }
   },
   "autoloaded_mods": {},
   "keys": {
     "archived": [],
     "public_key": "MKgLku3ydfXIvNy5TcnZnW8zSB4d+yZ2J/3r7k6JdwE="
+  },
+  "pathway_mgmt": {
+    "pathways": []
   }
 }
