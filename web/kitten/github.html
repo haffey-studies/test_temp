@@ -16,7 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-		Kitten release (2019) author: Dr. Anthony Haffey (team@someopen.solutions)
+		Kitten release (2019-2021) author: Dr. Anthony Haffey (team@someopen.solutions)
 -->
 <style>
 #github_dialog{
@@ -29,7 +29,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Synch with github repository</h5>
-        <button type="button" class="close" onclick='$("#github_dialog").fadeOut()'>
+        <button type="button" class="close" id="fadeout_github">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -169,8 +169,6 @@ $("#add_repository_btn").on("click",function(){
               .electron
               .git
               .token_exists()
-            console.dir("this_response");
-            console.dir(this_response);
             if(this_response !== "success"){
               bootbox.alert(this_response);
               return false;
@@ -224,7 +222,7 @@ $("#add_repository_btn").on("click",function(){
             if(this_response !== "success"){
               bootbox.alert(this_response);
               Collector.electron.git.save_master();
-              return true;
+              return false;
             } else {
               Collector.custom_alert("success");
               $("#save_btn").click();
@@ -330,6 +328,15 @@ $("#delete_repo_btn").on("click",function(){
   });
 });
 
+$("#fadeout_github").on("click", function(){
+  if($("#select_repository").val() == "select a repository"){
+    $("#select_repository").val(github_json.repository);
+  }
+  $("#github_dialog").fadeOut();
+});
+
+
+
 $("#pull_repo_btn").on("click",function(){
   var organization = $("#select_organization").val();
   var repository   = $("#select_repository").val();
@@ -354,13 +361,13 @@ $("#pull_repo_btn").on("click",function(){
           return false;
         } else {
 
-          $("#save_btn").click();
           //refresh the page
           bootbox.confirm("Do you want to restart Collector so that you can see the changes you've just pulled? (Strongly recommended)", function(response){
             if(response){
               location.reload();
             }
           });
+          return true;
         }
       }
     ]
@@ -375,9 +382,10 @@ $("#push_repo_btn").on("click",function(){
   if(Collector.electron.git.token_exists()){
     var organization = $("#select_organization").val();
     var repository   = $("#select_repository").val();
-    bootbox.prompt(
-      "Please describe this commit:",
-      function(message){
+    bootbox.prompt({
+      title: "Please describe this commit:",
+      inputType: "textarea",
+      callback: function(message){
         if(message){
           progress_bootbox({
             start_text: "Pushing to your repository<br><br>",
@@ -424,7 +432,7 @@ $("#push_repo_btn").on("click",function(){
           });
         }
       }
-    );
+    });
   } else {
     bootbox.alert("You have not yet set up a valid token to manage your github repository with. Please do this by clicking on the <b>Add token</b> button");
   }
@@ -448,24 +456,14 @@ $("#select_organization").on("change", function(){
         }));
       });
 
+      $('#select_repository').append($('<option>', {
+          value: "select a repository",
+          text:  "select a repository",
+          disabled: true
+      }));
 
-      // swap the master_json and refresh
-      Collector
-        .electron
-        .git
-        .switch_repo({
-          old_org:      github_json.organization,
-          old_rep:      github_json.repository,
-          repository:   $("#select_repository").val(),
-          organization: $("#select_organization").val()
-        });
+      $('#select_repository').val("select a repository");
 
-      github_json.organization = this_org;
-      master_json
-        .github
-        .repository = $("#select_repository").val();
-      Collector.electron.git.save_master();
-      location.reload();
     } else {
       $("#select_organization").val(github_json.organization)
     }
@@ -495,9 +493,11 @@ $("#select_repository").on("change", function(){
       Collector.electron.git.save_master();
       location.reload();
     } else {
-      $("#select_repository").val(master_json)
+      $("#select_repository").val(
+        master_json
         .github
-        .repository;
+        .repository
+      );
     }
   })
 

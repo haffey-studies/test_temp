@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-		Kitten release (2019) author: Dr. Anthony Haffey (team@someopen.solutions)
+		Kitten release (2019-2021) author: Dr. Anthony Haffey (team@someopen.solutions)
 */
 var this_sheet;
 var this_selection;
@@ -134,7 +134,7 @@ function createHoT(container, data,sheet_name) {
 							this.alter("remove_col",k);                                                         // delete the column
 						}	else {                                                                              // otherwise we assume it's matching a previous header
 							this.setDataAtCell(0,k,this.getDataAtCell(0,k)+'*');                                // add a star to the title to avoid identical titles
-							bootbox.alert("You have identical headers for two columns '" + 											// let the user know the change has happened
+							Collector.custom_alert("You have identical headers for two columns '" + 											// let the user know the change has happened
 														this.getDataAtCell(0,k) + "', we have added a * to address this");
 						}
 					}

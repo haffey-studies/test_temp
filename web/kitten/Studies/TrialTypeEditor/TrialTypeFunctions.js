@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-		Kitten release (2019) author: Dr. Anthony Haffey (team@someopen.solutions)
+		Kitten release (2019-2021) author: Dr. Anthony Haffey (team@someopen.solutions)
 */
 $.ajaxSetup({ cache: false }); // prevents caching, which disrupts $.get calls
 
@@ -250,7 +250,6 @@ function list_trialtypes(to_do_after){
 
         switch(Collector.detect_context()){
           case "localhost":
-            console.dir(item);
             var trial_content = Collector.electron.fs.read_default(
               "Trialtypes",
               item

@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-		Kitten release (2019) author: Dr. Anthony Haffey (team@someopen.solutions)
+		Kitten release (2019-2021) author: Dr. Anthony Haffey (team@someopen.solutions)
 */
 function check_trialtypes_in_proc(procedure,post_trialtype){
 	var experiment 		= $("#experiment_list").val();
@@ -112,7 +112,7 @@ function list_studies(){
   try{
     name_list = Object.keys(master_json.exp_mgmt.experiments);
     function update_exp_list(){
-      var series_select_html = "<select id='add_study_series_select'  class='custom-select'><option hidden disabled selected>Select a study</option>";
+      var series_select_html = "<select id='add_study_pathway_select'  class='custom-select'><option hidden disabled selected>Select a study</option>";
       var select_html = "<select id='experiment_list'  class='custom-select'><option hidden disabled selected>Select a study</option>";
       name_list.sort(function(a,b){
         return a.toLowerCase().localeCompare(b.toLowerCase());
@@ -124,7 +124,8 @@ function list_studies(){
       series_select_html += "</select>";
       select_html += "</select>";
 
-      $("#add_study_series_select_div").html(series_select_html);
+      //$("#add_study_pathway_select").val()
+      $("#add_study_pathway_select_div").html(series_select_html);
 
       $("#experiments").html(select_html);
       $("#experiment_list").on("change",function(){
@@ -180,13 +181,14 @@ function list_studies(){
   }
 }
 function new_experiment(experiment){
-
   if($("#experiment_list").text().indexOf(experiment) !== -1){
 		bootbox.alert("Name already exists. Please try again.");
 	} else {
 
     //create it first in dropbox, THEN update table with location
-		master_json.exp_mgmt.experiments[experiment] = default_experiment;
+		master_json.exp_mgmt.experiments[experiment] = JSON.parse(
+      JSON.stringify(default_experiment)
+    );
 
 		var this_path = "/Experiments/" + experiment + ".json";
 
