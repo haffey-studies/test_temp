@@ -1,0 +1,2 @@
+item,trial type,max time,text,shuffle 1,btn_width,instruct_1,responses_1,instruct_2,responses_2,instruct_3,responses_3,cue_height,cue_width,n_trials,fb_time,
+2 to 25,rate_image,user,beep,trials,50px,"How anxious would you feel in the above <u><b>{{image_type}}</b></u> interaction with <b><u>{{friend_friends}}</b></u> (1 = not at all, 9 = extremely)",1|2|3|4|5|6|7|8|9,,,,,300,400,,,
